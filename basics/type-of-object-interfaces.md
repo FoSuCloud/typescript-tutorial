@@ -149,12 +149,13 @@ let tom: Person = {
 //     Type 'string | number' is not assignable to type 'string'.
 //       Type 'number' is not assignable to type 'string'.
 ```
-
+* 注意，此时的propName相当于所有属性，中括号后面的冒号后面是所有可能的数据类型
 上例中，任意属性的值允许是 `string`，但是可选属性 `age` 的值却是 `number`，`number` 不是 `string` 的子属性，所以报错了。
 
 另外，在报错信息中可以看出，此时 `{ name: 'Tom', age: 25, gender: 'male' }` 的类型被推断成了 `{ [x: string]: string | number; name: string; age: number; gender: string; }`，这是联合类型和接口的结合。
 
 一个接口中只能定义一个任意属性。如果接口中有多个类型的属性，则可以在任意属性中使用联合类型：
+* 此时[propName: string]: string | number;的string|number表示`属性中可以存在string类型属性值和number类型属性值`
 ```ts
 interface Person {
     name: string;
